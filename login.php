@@ -5,6 +5,8 @@
  * Date: 5/2/2016
  * Time: 1:34 PM
  * PHP bookmark login page
+ *
+ * 函数来自于output_fns.php
  */
 require_once('bookmark_fns.php');
 do_html_header('');
