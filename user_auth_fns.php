@@ -128,3 +128,27 @@ function get_random_word($min_length,$max_length){
     $word = trim($word); //trim the tailing \n from fgets
     return $word;
 }
+
+
+function notify_password($username,$password){
+    //notify the user that their password has been changed
+    $conn = db_connect();
+    $result = $conn->query("select email from uer where username='".$username."'");
+    if(!$result){
+        throw new Exception('Could not find email address.');
+    }else if($result->num_rows == 0){
+        throw new Exception('Could not find email address');
+        //user name not in db
+    }else{
+        $row = $result->fetch_object();
+        $email = $row->email;
+        $from = "From:suppor@phpmark\r\n";
+        $mesg = "Your PHPBokkmark password has been changed to".$password."\r\n"."Please change it next time you log in.\r\n";
+
+        if(mail($email,'PHPBookmark login information',$mesg,$from)){
+            return true;
+        }else{
+            throw new Exception('Could not send email');
+        }
+    }
+}
