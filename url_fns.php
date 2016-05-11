@@ -6,14 +6,15 @@
  * Time: 5:04 PM
  */
 require_once ('bookmark_fns.php');
+require_once ('add_bm_form.php');
 session_start();
 
 //create short variable name
-$new_url = $_POST['new_url'];
+$new_url =@$_POST['new_url'];
 do_html_header('Adding bookmark');
 
 try{
-    eheck_valid_user();
+    check_valid_user();
     if(!filled_out($_POST)){
         throw new Exception('Form not completely filled out');
     }

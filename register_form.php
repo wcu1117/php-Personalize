@@ -8,5 +8,5 @@
 require_once ('bookmark_fns.php');
 do_html_header('User Registration');
 display_registration_form();
-d0_html_footer();
+do_html_footer();
 ?>
